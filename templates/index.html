@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Content Pipeline — Enterprise Control Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css?v=3.2">
+</head>
+<body>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+    <div class="app-container">
+        <!-- ── Left Sidebar Navigation ──────────────────────── -->
+        <!-- ── Left Sidebar Navigation (Collapsible) ────────── -->
+        <aside class="sidebar" id="app-sidebar">
+            <div class="sidebar-header">
+                <div class="brand-icon" title="Content Pipeline">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="brand-text">
+                    <div class="brand-title">Content Pipeline</div>
+                    <div class="brand-subtitle">Enterprise Edition</div>
+                </div>
+                <button id="btn-toggle-sidebar" class="sidebar-toggle-btn" title="Collapse Sidebar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+                </button>
+                <button id="btn-close-sidebar-mobile" class="sidebar-toggle-btn mobile-only-close" title="Close Menu">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-item active" data-target="dashboard" title="Dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-target="control-deck" title="Master Control Flow (n8n Studio)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    <span>Control Flow (n8n)</span>
+                </div>
+                <div class="nav-item" data-target="queue" title="URL Queue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    <span>URL Queue</span>
+                </div>
+                <div class="nav-item" data-target="sync" title="Cloud Sync">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+                    <span>Cloud Sync</span>
+                </div>
+                <div class="nav-item" data-target="settings" title="Settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Settings</span>
+                </div>
+                <div class="nav-item" data-target="articles" title="Articles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span>Articles</span>
+                </div>
+                <div class="nav-item" data-target="logs" title="Live Console">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    <span>Live Console</span>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span>Flask UI Pro Max</span>
+                <span style="color:var(--accent-green); font-weight:700;">v3.0</span>
+            </div>
+        </aside>
+
+        <!-- ── Main Workspace Area ──────────────────────────── -->
+        <main class="main-wrapper">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <button id="btn-toggle-sidebar-top" class="sidebar-toggle-btn header-toggle" title="Toggle Sidebar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <div class="status-badge-container">
+                        <div id="system-status-pill" class="status-pill">
+                            <span class="status-dot"></span>
+                            <span id="system-status-text">IDLE</span>
+                        </div>
+                        <div id="active-task-ticker" class="active-task-ticker">
+                            Ready — waiting for pipeline start.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button id="btn-start" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <span class="btn-text">Start Pipeline</span>
+                    </button>
+                    <button id="btn-stop" class="btn btn-stop" style="display:none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                        <span class="btn-text">Stop</span>
+                    </button>
+                    <button id="btn-resume" class="btn btn-secondary" title="Skip 6h quota sleep">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg>
+                        <span class="btn-text">Resume Now</span>
+                    </button>
+                    <button id="btn-publish-all" class="btn btn-accent" title="Publish all generated articles">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        <span class="btn-text">Publish All</span>
+                    </button>
+                    <button id="btn-shutdown-server" class="btn btn-outline-danger" onclick="shutdownServer()" title="Safely stop the server and close the app">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                        <span class="btn-text">Shutdown Server</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ── PAGE 1: DASHBOARD ────────────────────────── -->
+            <div id="page-dashboard" class="page-container active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div>
+                            <div id="stat-total" class="stat-value">0</div>
+                            <div class="stat-label">Total URLs</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon amber">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        </div>
+                        <div>
+                            <div id="stat-pending" class="stat-value">0</div>
+                            <div class="stat-label">Pending Queue</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                        <div>
+                            <div id="stat-done" class="stat-value">0</div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon red">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        </div>
+                        <div>
+                            <div id="stat-failed" class="stat-value">0</div>
+                            <div class="stat-label">Failed</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </div>
+                        <div>
+                            <div id="stat-published" class="stat-value">0</div>
+                            <div class="stat-label">WP Published</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar Card -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                        <span style="font-weight:600; font-size:0.9rem;">Batch Progress</span>
+                        <span id="progress-text" style="font-weight:600; font-size:0.85rem; color:var(--accent-blue);">0% Completed</span>
+                    </div>
+                    <div style="width:100%; height:10px; background:#1e293b; border-radius:9999px; overflow:hidden;">
+                        <div id="progress-fill" style="width:0%; height:100%; background:linear-gradient(90deg, var(--accent-blue), var(--accent-green)); transition:width 0.4s ease;"></div>
+                    </div>
+                </div>
+
+                <!-- Visuals Highlights Grid -->
+                <div class="visuals-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                Latest Feature Hero Image
+                            </div>
+                        </div>
+                        <div id="dashboard-feature-preview" class="preview-box">
+                            <div style="color:var(--text-dim); font-size:0.85rem;">No image generated yet</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.5 19.37c-.03-.84-.06-2.14.12-3.06.17-.83 1.1-4.7 1.1-4.7s-.28-.56-.28-1.39c0-1.3.75-2.27 1.7-2.27.8 0 1.19.6 1.19 1.33 0 .81-.51 2.01-.78 3.13-.22.95.48 1.72 1.41 1.72 1.69 0 2.99-1.78 2.99-4.36 0-2.28-1.64-3.87-3.98-3.87-2.71 0-4.3 2.03-4.3 4.13 0 .82.31 1.69.71 2.17.08.1.09.18.06.3-.08.31-.25 1.01-.28 1.15-.04.18-.14.22-.32.13-1.22-.57-1.98-2.35-1.98-3.79 0-3.08 2.24-5.91 6.46-5.91 3.39 0 6.03 2.42 6.03 5.65 0 3.37-2.12 6.08-5.07 6.08-.99 0-1.92-.51-2.24-1.12l-.61 2.33c-.22.85-.82 1.92-1.22 2.58A9.99 9.99 0 1 0 12 2z"/></svg>
+                                Latest Pinterest Pin (2:3)
+                            </div>
+                        </div>
+                        <div id="dashboard-pin-preview" class="preview-box pin-preview-box">
+                            <div style="color:var(--text-dim); font-size:0.85rem;">No pin generated</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity List -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Recent Activity Feed</div>
+                    </div>
+                    <div id="recent-activity-list" style="display:flex; flex-direction:column; gap:6px;">
+                        <div style="color:var(--text-dim); font-size:0.85rem;">Listening for activity...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PAGE 2: MASTER CONTROL FLOW (n8n NODE STUDIO) ── -->
+            <div id="page-control-deck" class="page-container n8n-page">
+                <!-- n8n Canvas Header Bar -->
+                <div class="n8n-studio-bar">
+                    <div class="n8n-studio-info">
+                        <div class="n8n-studio-badge">
+                            <span class="pulse-dot"></span>
+                            <span>n8n Workflow Matrix</span>
+                        </div>
+                        <h2 class="n8n-studio-title">Master Control Flow</h2>
+                        <span class="n8n-studio-sub">Drag boxes &bull; Click chips to configure &bull; Scroll to zoom &bull; Drag canvas to pan</span>
+                    </div>
+
+                    <div class="n8n-controls-group">
+                        <!-- Zoom & Pan Toolbar -->
+                        <div class="n8n-zoom-toolbar">
+                            <button class="zoom-btn" onclick="n8nZoom(-0.15)" title="Zoom Out (-)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <span id="n8n-zoom-level" class="zoom-level-text" title="Current Zoom">82%</span>
+                            <button class="zoom-btn" onclick="n8nZoom(0.15)" title="Zoom In (+)">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                            <button class="zoom-btn" onclick="n8nResetZoom()" title="Reset to 100% (1:1)">1:1</button>
+                            <button class="zoom-btn" onclick="n8nFitView()" title="Fit Flow to Screen">Fit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. The Interactive n8n Canvas View -->
+                <div id="deck-n8n-view" class="n8n-canvas-viewport">
+                    <div id="n8n-canvas-stage" class="n8n-canvas-stage">
+                        <!-- SVG Connecting Lines Layer -->
+                        <svg id="n8n-svg-layer" class="n8n-svg-layer">
+                            <defs>
+                                <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="100%" stop-color="#8b5cf6" />
+                                </linearGradient>
+                                <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#10b981" />
+                                    <stop offset="100%" stop-color="#059669" />
+                                </linearGradient>
+                                <linearGradient id="grad-orange" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#f59e0b" />
+                                    <stop offset="100%" stop-color="#06b6d4" />
+                                </linearGradient>
+                                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" result="blur" />
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                </filter>
+                            </defs>
+                            <g id="n8n-wires-group"></g>
+                        </svg>
+
+                        <!-- Nodes Layer -->
+                        <div id="n8n-nodes-layer" class="n8n-nodes-layer">
+                            <!-- NODE 1: Ingestion / Queue Trigger -->
+                            <div class="n8n-node node-amber" id="n8n-node-queue" data-node="queue" style="left: 60px; top: 120px; width: 330px;">
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: URLs to Scrape"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon amber">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">1. Queue Trigger</div>
+                                        <div class="n8n-node-subtitle">Ingestion & Link Dispatch</div>
+                                    </div>
+                                    <span class="n8n-node-badge amber">TRIGGER</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <p style="font-size:0.78rem; color:var(--text-muted);">Pulls pending articles from local SQLite queue or Cloud Firestore:</p>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--border-color);">
+                                        <span style="font-size:0.8rem; color:var(--text-muted);">Sync Mode</span>
+                                        <span id="n8n-val-sync-mode" style="font-size:0.82rem; font-weight:700; color:#93c5fd;">LOCAL DB</span>
+                                    </div>
+                                    <div style="display:flex; gap:8px; margin-top:4px;">
+                                        <button class="btn btn-sm btn-secondary" style="flex:1;" onclick="openAddUrlModal()">+ Add URL</button>
+                                        <button class="btn btn-sm btn-secondary" onclick="loadQueue(); showToast('Queue synced', 'info')">Sync</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 2: Web Extraction Engine -->
+                            <div class="n8n-node node-cyan" id="n8n-node-extract" data-node="extract" style="left: 450px; top: 120px; width: 340px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: URL Stream"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Clean HTML & Text"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon cyan">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">2. Web Scraper</div>
+                                        <div class="n8n-node-subtitle">newspaper4k + BS4 Parser</div>
+                                    </div>
+                                    <span class="n8n-node-badge cyan">PARSER</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <p style="font-size:0.78rem; color:var(--text-muted);">Extracts title, meta tags, and high-density editorial paragraphs:</p>
+                                    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.76rem; color:var(--text-muted);">
+                                        <div style="display:flex; justify-content:space-between;">
+                                            <span>Fallback Guard:</span>
+                                            <span style="color:#67e8f9; font-weight:600;">newspaper4k ➔ BS4</span>
+                                        </div>
+                                        <div style="display:flex; justify-content:space-between;">
+                                            <span>IPv4 Loopback:</span>
+                                            <span style="color:var(--accent-green); font-weight:600;">ACTIVE (127.0.0.1)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 3: AI Editorial Engine -->
+                            <div class="n8n-node node-purple" id="n8n-node-text-ai" data-node="text-ai" style="left: 860px; top: 90px; width: 400px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Raw Scraped Text"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Structured JSON Copy"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon purple">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.1 12.5"/><path d="M12 12l4.5 8"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">3. Editorial AI Engine</div>
+                                        <div class="n8n-node-subtitle">SEO + GEO + AEO Skills</div>
+                                    </div>
+                                    <span id="deck-badge-text-eng-node" class="n8n-node-badge purple">ANTIGRAVITY</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">AI Text Provider</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="text_engine" data-val="agy" onclick="deckQuickSet('text_engine', 'agy')">Antigravity CLI ('agy')</div>
+                                        <div class="deck-chip" data-field="text_engine" data-val="gemini" onclick="deckQuickSet('text_engine', 'gemini')">Direct Gemini API</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Article Copy Structure:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="article_format" data-val="paragraphs" onclick="deckQuickSet('article_format', 'paragraphs')">Paragraphs</div>
+                                        <div class="deck-chip" data-field="article_format" data-val="point_wise" onclick="deckQuickSet('article_format', 'point_wise')">Bullets</div>
+                                        <div class="deck-chip" data-field="article_format" data-val="subheadings" onclick="deckQuickSet('article_format', 'subheadings')">H2 + H3</div>
+                                        <div class="deck-chip" data-field="article_format" data-val="hybrid" onclick="deckQuickSet('article_format', 'hybrid')">Hybrid</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 4: Post Layout & Sequence Architect -->
+                            <div class="n8n-node node-blue featured-node" id="n8n-node-layout" data-node="layout" style="left: 1340px; top: 60px; width: 460px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Editorial Copy"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Arranged Gutenberg Flow"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon blue">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">4. Post Sequence Architect</div>
+                                        <div class="n8n-node-subtitle">Gutenberg Block Arrangement</div>
+                                    </div>
+                                    <span id="deck-badge-layout-node" class="n8n-node-badge blue">STANDARD</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <p style="font-size:0.78rem; color:var(--text-muted);">Defines the exact structural order of Hero images, intros, heading images & paragraphs:</p>
+
+                                    <!-- Live Dynamic Sequence Diagram -->
+                                    <div id="n8n-node-layout-diagram" class="layout-diagram-box">
+                                        <!-- Injected dynamically by app.js -->
+                                    </div>
+
+                                    <div class="deck-chips-group" style="margin-top:6px;">
+                                        <div class="deck-chip" data-field="post_layout_order" data-val="standard" onclick="deckQuickSet('post_layout_order', 'standard')">Standard (Hero → Intro → Img → H2)</div>
+                                        <div class="deck-chip" data-field="post_layout_order" data-val="dual_hero" onclick="deckQuickSet('post_layout_order', 'dual_hero')">Dual Hero (Hero 1 → Hero 2 → Intro)</div>
+                                        <div class="deck-chip" data-field="post_layout_order" data-val="heading_first" onclick="deckQuickSet('post_layout_order', 'heading_first')">Heading First (Hero → Intro → H2 → Img)</div>
+                                        <div class="deck-chip" data-field="post_layout_order" data-val="intro_first" onclick="deckQuickSet('post_layout_order', 'intro_first')">Intro First (Intro → Hero → Img → H2)</div>
+                                        <div class="deck-chip" data-field="post_layout_order" data-val="dual_hero_split" onclick="deckQuickSet('post_layout_order', 'dual_hero_split')">Split Dual Hero (Hero 1 → Intro → Hero 2)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 5: Visual AI Backend Router -->
+                            <div class="n8n-node node-pink" id="n8n-node-visual-ai" data-node="visual-ai" style="left: 860px; top: 540px; width: 400px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Prompts from Editorial AI"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Image Generation Pipe"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon pink">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">5. Visual AI Backend Router</div>
+                                        <div class="n8n-node-subtitle">Multi-Provider Image Engine</div>
+                                    </div>
+                                    <span id="deck-badge-img-eng-node" class="n8n-node-badge pink">FALLBACK</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Image Model Backend:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="image_engine" data-val="gflow" onclick="deckQuickSet('image_engine', 'gflow')">Google Flow (gflow)</div>
+                                        <div class="deck-chip" data-field="image_engine" data-val="agy_fallback" onclick="deckQuickSet('image_engine', 'agy_fallback')">Antigravity + Pollinations</div>
+                                        <div class="deck-chip" data-field="image_engine" data-val="pollinations" onclick="deckQuickSet('image_engine', 'pollinations')">Pollinations Only (Free)</div>
+                                        <div class="deck-chip" data-field="image_engine" data-val="gemini_api" onclick="deckQuickSet('image_engine', 'gemini_api')">Gemini Imagen 3</div>
+                                        <div class="deck-chip" data-field="image_engine" data-val="my_server" onclick="deckQuickSet('image_engine', 'my_server')">My Server GPU</div>
+                                        <div class="deck-chip" data-field="image_engine" data-val="agy_only" onclick="deckQuickSet('image_engine', 'agy_only')">Antigravity Only</div>
+                                    </div>
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:6px;">Aspect Ratio Prompt Injection:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="prompt_include_dimensions" data-val="true" onclick="deckQuickSet('prompt_include_dimensions', true)">WxH & Ratio in Prompt: ON</div>
+                                        <div class="deck-chip" data-field="prompt_include_dimensions" data-val="false" onclick="deckQuickSet('prompt_include_dimensions', false)">WxH & Ratio in Prompt: OFF</div>
+                                    </div>
+                                    <div style="font-size:0.75rem; color:var(--accent-green); margin-top:4px;">
+                                        &bull; Anti-Blank StdDev Gate &bull; WebP 88% Compression
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 6: Hero Feature Image Studio -->
+                            <div class="n8n-node node-indigo" id="n8n-node-hero-img" data-node="hero-img" style="left: 1340px; top: 480px; width: 460px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Visual Prompts"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Hero Image Media"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon indigo">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">6. Hero Feature Studio</div>
+                                        <div class="n8n-node-subtitle">1.91:1 OpenGraph Ratio</div>
+                                    </div>
+                                    <span id="deck-badge-feat-res-node" class="n8n-node-badge indigo">HD</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Feature Hero Count:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="feature_image_count" data-val="1" onclick="deckQuickSet('feature_image_count', 1)">1 Single Hero Image</div>
+                                        <div class="deck-chip" data-field="feature_image_count" data-val="2" onclick="deckQuickSet('feature_image_count', 2)">2 Heroes: Hero 1 + Hero 2 Pinterest Pin</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Hero 1 Text Overlay:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="feature_text_overlay" data-val="true" onclick="deckQuickSet('feature_text_overlay', true)">Hero 1 Overlay: ON</div>
+                                        <div class="deck-chip" data-field="feature_text_overlay" data-val="false" onclick="deckQuickSet('feature_text_overlay', false)">Hero 1 Overlay: OFF (Clean)</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Hero 2 Text Overlay:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="feature_2_text_overlay" data-val="true" onclick="deckQuickSet('feature_2_text_overlay', true)">Hero 2 Overlay: ON</div>
+                                        <div class="deck-chip" data-field="feature_2_text_overlay" data-val="false" onclick="deckQuickSet('feature_2_text_overlay', false)">Hero 2 Overlay: OFF (Clean)</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Independent Hero Resolution:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="feature_resolution" data-val="sd" onclick="deckQuickSet('feature_resolution', 'sd')">SD (854x448)</div>
+                                        <div class="deck-chip" data-field="feature_resolution" data-val="hd" onclick="deckQuickSet('feature_resolution', 'hd')">HD (1200x630)</div>
+                                        <div class="deck-chip" data-field="feature_resolution" data-val="fhd" onclick="deckQuickSet('feature_resolution', 'fhd')">FHD (1920x1008)</div>
+                                        <div class="deck-chip" data-field="feature_resolution" data-val="2k" onclick="deckQuickSet('feature_resolution', '2k')">2K (2560x1344)</div>
+                                    </div>
+                                    <div class="res-custom-inputs" style="margin-top:4px;">
+                                        <input id="deck-input-feat-res-node" type="text" class="form-control" style="font-size:0.8rem; padding:5px 10px;" placeholder="Custom: e.g. 1200x630" onchange="deckQuickSet('feature_resolution', this.value)">
+                                        <button class="btn btn-sm btn-secondary" onclick="deckQuickSet('feature_resolution', document.getElementById('deck-input-feat-res-node').value)">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 7: Section Heading Images & Overlay -->
+                            <div class="n8n-node node-teal" id="n8n-node-heading-img" data-node="heading-img" style="left: 1340px; top: 920px; width: 460px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Section Prompts"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: Section Media"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon teal">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">7. Section Images & Overlay</div>
+                                        <div class="n8n-node-subtitle">16:9 In-Article Imagery (1:1 Scraped)</div>
+                                    </div>
+                                    <span id="deck-badge-overlay-node" class="n8n-node-badge teal">FIRST ONLY</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Section Headings Text Overlay Master</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="heading_text_overlay" data-val="true" onclick="deckQuickSet('heading_text_overlay', true)">Overlay: ON</div>
+                                        <div class="deck-chip" data-field="heading_text_overlay" data-val="false" onclick="deckQuickSet('heading_text_overlay', false)">Overlay: OFF (100% Clean Art)</div>
+                                    </div>
+
+                                    <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; margin-top:4px;">When Overlay ON: Mode</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="heading_overlay_mode" data-val="first_only" onclick="deckQuickSet('heading_overlay_mode', 'first_only')">1st Heading Only</div>
+                                        <div class="deck-chip" data-field="heading_overlay_mode" data-val="all" onclick="deckQuickSet('heading_overlay_mode', 'all')">All Headings</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Independent Section Resolution:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="resolution" data-val="sd" onclick="deckQuickSet('resolution', 'sd')">SD (854x480)</div>
+                                        <div class="deck-chip" data-field="resolution" data-val="hd" onclick="deckQuickSet('resolution', 'hd')">HD (1200x675)</div>
+                                        <div class="deck-chip" data-field="resolution" data-val="fhd" onclick="deckQuickSet('resolution', 'fhd')">FHD (1920x1080)</div>
+                                        <div class="deck-chip" data-field="resolution" data-val="2k" onclick="deckQuickSet('resolution', '2k')">2K (2560x1440)</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Visual Style:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="image_type" data-val="photo" onclick="deckQuickSet('image_type', 'photo')">35mm Photo</div>
+                                        <div class="deck-chip" data-field="image_type" data-val="cinematic" onclick="deckQuickSet('image_type', 'cinematic')">70mm Film</div>
+                                        <div class="deck-chip" data-field="image_type" data-val="vector" onclick="deckQuickSet('image_type', 'vector')">Flat Vector</div>
+                                        <div class="deck-chip" data-field="image_type" data-val="3d_render" onclick="deckQuickSet('image_type', '3d_render')">3D Clay</div>
+                                        <div class="deck-chip" data-field="image_type" data-val="vintage" onclick="deckQuickSet('image_type', 'vintage')">Vintage 70s</div>
+                                        <div class="deck-chip" data-field="image_type" data-val="studio" onclick="deckQuickSet('image_type', 'studio')">Studio Macro</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 8: Pinterest Pin Studio -->
+                            <div class="n8n-node node-rose" id="n8n-node-pin-img" data-node="pin-img" style="left: 1340px; top: 1420px; width: 460px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Pin Concept"></div>
+                                <div class="n8n-port n8n-port-out" data-port="out" title="Output: 2:3 Vertical Pin"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon rose">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.5 19.37c-.03-.84-.06-2.14.12-3.06.17-.83 1.1-4.7 1.1-4.7s-.28-.56-.28-1.39c0-1.3.75-2.27 1.7-2.27.8 0 1.19.6 1.19 1.33 0 .81-.51 2.01-.78 3.13-.22.95.48 1.72 1.41 1.72 1.69 0 2.99-1.78 2.99-4.36 0-2.28-1.64-3.87-3.98-3.87-2.71 0-4.3 2.03-4.3 4.13 0 .82.31 1.69.71 2.17.08.1.09.18.06.3-.08.31-.25 1.01-.28 1.15-.04.18-.14.22-.32.13-1.22-.57-1.98-2.35-1.98-3.79 0-3.08 2.24-5.91 6.46-5.91 3.39 0 6.03 2.42 6.03 5.65 0 3.37-2.12 6.08-5.07 6.08-.99 0-1.92-.51-2.24-1.12l-.61 2.33c-.22.85-.82 1.92-1.22 2.58A9.99 9.99 0 1 0 12 2z"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">8. Pinterest Pin Studio</div>
+                                        <div class="n8n-node-subtitle">2:3 Vertical Graphic</div>
+                                    </div>
+                                    <span id="deck-badge-pin-res-node" class="n8n-node-badge rose">1000x1500</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600;">Pinterest Pin Text Overlay:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="pin_text_overlay" data-val="true" onclick="deckQuickSet('pin_text_overlay', true)">Pin Overlay: ON</div>
+                                        <div class="deck-chip" data-field="pin_text_overlay" data-val="false" onclick="deckQuickSet('pin_text_overlay', false)">Pin Overlay: OFF (Clean Art)</div>
+                                    </div>
+
+                                    <div style="font-size:0.78rem; color:var(--text-muted); font-weight:600; margin-top:4px;">Independent Pin Resolution:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="pin_resolution" data-val="1000x1500" onclick="deckQuickSet('pin_resolution', '1000x1500')">1000x1500 (Std)</div>
+                                        <div class="deck-chip" data-field="pin_resolution" data-val="735x1102" onclick="deckQuickSet('pin_resolution', '735x1102')">735x1102 (Classic)</div>
+                                        <div class="deck-chip" data-field="pin_resolution" data-val="1080x1920" onclick="deckQuickSet('pin_resolution', '1080x1920')">1080x1920 (9:16)</div>
+                                    </div>
+                                    <div style="font-size:0.75rem; color:var(--accent-pink); margin-top:4px;">
+                                        &bull; Hidden WP Gutenberg Block Auto-Embedded &bull; pinterest_pin.txt
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NODE 9: WordPress Destination & Publisher -->
+                            <div class="n8n-node node-green destination-node" id="n8n-node-publisher" data-node="publisher" style="left: 1880px; top: 440px; width: 440px;">
+                                <div class="n8n-port n8n-port-in" data-port="in" title="Input: Assembled Posts, Images & Pins"></div>
+                                <div class="n8n-node-header">
+                                    <div class="n8n-node-icon green">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </div>
+                                    <div class="n8n-node-title-group">
+                                        <div class="n8n-node-title">9. WordPress Publisher</div>
+                                        <div class="n8n-node-subtitle">Gutenberg + Rank Math Sync</div>
+                                    </div>
+                                    <span id="deck-badge-wp-status-node" class="n8n-node-badge green">DRAFT</span>
+                                </div>
+                                <div class="n8n-node-body">
+                                    <div class="deck-action-box" onclick="deckToggleWpStatus()">
+                                        <div>
+                                            <div style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase;">Publishing Status</div>
+                                            <div id="deck-val-wp-status-node" class="value-display" style="color:var(--accent-amber); font-size:1rem;">DRAFT (Safe in WP)</div>
+                                        </div>
+                                        <span class="btn btn-sm btn-secondary">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                                            Toggle
+                                        </span>
+                                    </div>
+
+                                    <div class="deck-action-box" onclick="deckToggleAutoPublish()" style="margin-top:6px;">
+                                        <div>
+                                            <div style="font-size:0.72rem; color:var(--text-dim); text-transform:uppercase;">Auto-Publish Queue</div>
+                                            <div id="deck-val-auto-pub-node" class="value-display" style="color:var(--accent-green); font-size:1rem;">ON (Hands-Free)</div>
+                                        </div>
+                                        <span class="btn btn-sm btn-secondary">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                                            Toggle
+                                        </span>
+                                    </div>
+
+                                    <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600; margin-top:8px;">Post URL Slug Source:</div>
+                                    <div class="deck-chips-group">
+                                        <div class="deck-chip" data-field="slug_mode" data-val="competitor" onclick="deckQuickSet('slug_mode', 'competitor')">Competitor Slug</div>
+                                        <div class="deck-chip" data-field="slug_mode" data-val="title" onclick="deckQuickSet('slug_mode', 'title')">Title Slug</div>
+                                    </div>
+
+                                    <div style="display:flex; gap:8px; margin-top:8px;">
+                                        <button class="btn btn-sm btn-primary" style="flex:1;" onclick="document.getElementById('btn-test-wp')?.click()">Test WP API</button>
+                                        <button class="btn btn-sm btn-accent" onclick="document.getElementById('btn-publish-all')?.click()">Publish All</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── PAGE 3: URL QUEUE ────────────────────────── -->
+            <div id="page-queue" class="page-container">
+                <div class="table-container">
+                    <div class="table-toolbar">
+                        <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                            <div class="search-box-wrapper">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <input id="queue-search" type="text" class="search-input" placeholder="Search URL or category..." oninput="loadQueue()">
+                            </div>
+                            <select id="queue-filter" class="form-control" style="width:140px; padding:8px 12px;" onchange="loadQueue()">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="processing">Processing</option>
+                                <option value="done">Done</option>
+                                <option value="failed">Failed</option>
+                            </select>
+                        </div>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <button class="btn btn-secondary btn-sm" onclick="openAddUrlModal()">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Add URL
+                            </button>
+                            <label class="btn btn-secondary btn-sm" style="cursor:pointer; margin:0;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                                Upload CSV
+                                <input id="csv-file-input" type="file" accept=".csv,.txt" style="display:none;">
+                            </label>
+                            <button class="btn btn-secondary btn-sm" onclick="exportQueueCsv()" title="Export URLs, status, and published WordPress links to CSV">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Export CSV
+                            </button>
+                            <button id="btn-sync-sheets" class="btn btn-secondary btn-sm" onclick="syncQueueToGoogleSheets()" title="Synchronize queue to Google Sheets without duplicates" style="border-color: rgba(34, 197, 94, 0.4); color: #4ade80;">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                                Sync Sheets
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="fetch('/api/queue/reset-failed', {method:'POST'}).then(loadQueue)">
+                                Re-queue Failed
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="fetch('/api/queue/clear-done', {method:'POST'}).then(loadQueue)">
+                                Clear Done
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Source URL</th>
+                                <th>Category</th>
+                                <th>Status (Click to Switch)</th>
+                                <th>Added Date</th>
+                                <th style="width:60px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="queue-table-body">
+                            <tr><td colspan="5" style="text-align:center; padding:30px; color:var(--text-dim);">Loading queue...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── PAGE 4: CLOUD SYNC ───────────────────────── -->
+            <div id="page-sync" class="page-container">
+                <div class="form-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Firebase Cloud Account</div>
+                        </div>
+                        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.6; margin-bottom:18px;">
+                            Sign in to share and claim URLs in real time across multiple computers without duplicating work. Stale claims automatically expire after 3–6 hours.
+                        </p>
+                        <div class="form-group" style="margin-bottom:12px;">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="user@example.com">
+                        </div>
+                        <div class="form-group" style="margin-bottom:18px;">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" placeholder="••••••••">
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn btn-primary btn-sm">Sign In</button>
+                            <button class="btn btn-secondary btn-sm">Create Account</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Synchronization Mode</div>
+                        </div>
+                        <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.6; margin-bottom:18px;">
+                            Choose whether to run in 100% offline standalone mode (local SQLite queue) or synchronize with Firestore Cloud.
+                        </p>
+                        <div class="form-group" style="margin-bottom:18px;">
+                            <label class="form-label">Active Queue Backend</label>
+                            <select class="form-control">
+                                <option value="local">Local SQLite (Pure Offline Mode)</option>
+                                <option value="firestore">Cloud Firestore (Multi-PC Sync)</option>
+                            </select>
+                        </div>
+                        <div class="status-pill" style="display:inline-flex;">
+                            <span class="status-dot" style="background:var(--accent-green);"></span>
+                            <span>Local SQLite Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PAGE 5: SETTINGS ─────────────────────────── -->
+            <div id="page-settings" class="page-container">
+                <form id="settings-form">
+                    <!-- Post Sequence Architecture -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                </span>
+                                Post Layout & Sequence Architect
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Post Block Order Sequence</label>
+                                <select id="setting-post_layout_order" name="post_layout_order" class="form-control">
+                                    <option value="standard">Standard: Hero Image 1 → Intro → [Img → H2 → Text]* → Conclusion</option>
+                                    <option value="dual_hero">Dual Hero: Hero 1 → Hero 2 → Intro → [Img → H2 → Text]* → Conclusion</option>
+                                    <option value="heading_first">Heading First: Hero 1 → Intro → [H2 → Img → Text]* → Conclusion</option>
+                                    <option value="intro_first">Intro First: Intro → Hero 1 → [Img → H2 → Text]* → Conclusion</option>
+                                    <option value="dual_hero_split">Split Dual Hero: Hero 1 → Intro → Hero 2 → [Img → H2 → Text]*</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Hero Feature Image Count</label>
+                                <select id="setting-feature_image_count" name="feature_image_count" class="form-control">
+                                    <option value="1">1 Hero Image (Standard Single Hero)</option>
+                                    <option value="2">2 Hero Images (Hero 1 Regular + Hero 2 Pinterest Pin → Intro → Sections)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Engine Settings -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.1 12.5"/><path d="M12 12l4.5 8"/></svg>
+                                </span>
+                                AI Text & Rewrite Engine
+                            </div>
+                            <button type="button" id="btn-test-ai" class="btn btn-secondary btn-sm">Test AI Connection</button>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Text LLM Provider</label>
+                                <select id="setting-text_engine" name="text_engine" class="form-control">
+                                    <option value="agy">Google Antigravity CLI ('agy') — Free Google Quota</option>
+                                    <option value="gemini">Google Gemini API (Direct API Key)</option>
+                                </select>
+                            </div>
+                            <div id="group-gemini-key" class="form-group" style="display:none;">
+                                <label class="form-label">Gemini API Key</label>
+                                <input id="setting-gemini_api_key" name="gemini_api_key" type="password" class="form-control" placeholder="AIzaSy...">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Gemini Model</label>
+                                <select id="setting-gemini_model" name="gemini_model" class="form-control">
+                                    <option value="gemini-2.5-flash">Gemini 2.5 Flash (Ultra Fast & Responsive)</option>
+                                    <option value="gemini-2.5-pro">Gemini 2.5 Pro (Deep Reasoning & Nuance)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Article Formatting Structure</label>
+                                <select id="setting-article_format" name="article_format" class="form-control">
+                                    <option value="paragraphs">Standard Paragraphs (Narrative Prose)</option>
+                                    <option value="point_wise">Point-Wise / Scannable Bullet Points</option>
+                                    <option value="subheadings">Sub-Heading Wise (H2 + H3 Subsections)</option>
+                                    <option value="hybrid">Hybrid (Paragraphs + Actionable Takeaways)</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Master Editorial Persona / Tone Prompt</label>
+                                <textarea id="setting-master_text_prompt" name="master_text_prompt" class="form-control" placeholder="E.g., Write with authoritative expertise, clear actionable advice, and no fluff."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Generation Engine -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                </span>
+                                AI Image Provider & Generator
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">AI Image Engine</label>
+                                <select id="setting-image_engine" name="image_engine" class="form-control" onchange="toggleEngineFields()">
+                                    <option value="gflow">Google Flow (gflow — Headless / Off-screen Imagen) - Recommended</option>
+                                    <option value="agy_fallback">Google Antigravity (with Pollinations Fallback)</option>
+                                    <option value="gemini_api">Google Gemini / Imagen 3 API (via Gemini API Key)</option>
+                                    <option value="pollinations">Pollinations AI Only (Free, No Keys Required)</option>
+                                    <option value="my_server">My Server (Colab / ngrok GPU Server)</option>
+                                    <option value="agy_only">Antigravity Only (with 6h Quota Sleep)</option>
+                                </select>
+                            </div>
+                            <div id="group-server-url" class="form-group" style="display:none;">
+                                <label class="form-label">GPU Server URL (ngrok)</label>
+                                <input id="setting-server_url" name="server_url" type="text" class="form-control" placeholder="https://xxxx.ngrok-free.dev/generate">
+                            </div>
+                            <div id="group-pollinations-delay" class="form-group">
+                                <label class="form-label">Pollinations Anti-Spam Cooldown (Seconds)</label>
+                                <input id="setting-pollinations_delay" name="pollinations_delay" type="number" class="form-control" value="180">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Image Visual Style Preset</label>
+                                <select id="setting-image_type" name="image_type" class="form-control">
+                                    <option value="photo">Photorealistic (35mm Documentary, Natural Light)</option>
+                                    <option value="cinematic">Cinematic Film Still (70mm Anamorphic)</option>
+                                    <option value="vector">Modern Flat Vector / Clean Illustration</option>
+                                    <option value="3d_render">3D Isometric Clay Render</option>
+                                    <option value="vintage">Vintage Retro 1970s Film</option>
+                                    <option value="studio">Commercial Studio Product Macro</option>
+                                    <option value="watercolor">Watercolor & Ink Fine Art</option>
+                                    <option value="custom">Custom Style Prompt...</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Master Image Prompt Addition</label>
+                                <input id="setting-master_image_prompt" name="master_image_prompt" type="text" class="form-control" placeholder="Appended to all image prompts (e.g. 8k, sharp focus, natural colors, photorealistic)">
+                            </div>
+                            <div class="form-group full-width">
+                                <div class="toggle-wrapper" style="padding:12px 16px; background:#0b1120; border-radius:10px; border:1px solid #1e293b;">
+                                    <div>
+                                        <div style="font-size:0.88rem; font-weight:600; color:#f8fafc;">Inject Width, Height & Aspect Ratio into Prompt</div>
+                                        <div style="font-size:0.75rem; color:var(--text-dim);">Appends exact dimensions (WxH breadth & height) and aspect ratio (e.g. 16:9 wide landscape, 9:16 vertical) into the image prompt so AI models strictly respect framing</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-prompt_include_dimensions" name="prompt_include_dimensions" type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Flow (gflow) Studio Controls -->
+                    <div id="card-gflow-studio" class="card settings-section" style="border: 1px solid #3b82f6; box-shadow: 0 10px 25px -5px rgba(59,130,246,0.12);">
+                        <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
+                            <div class="card-title">
+                                <span class="card-title-icon" style="background:rgba(59,130,246,0.15); color:#38bdf8;">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                                </span>
+                                Google Flow (gflow) Engine Studio
+                            </div>
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <span id="gflow-settings-badge" class="badge badge-secondary">Checking Auth...</span>
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="openGflowTerminalModal()" style="display:flex; align-items:center; gap:5px;">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                                    Open Flow Terminal
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Flow Imagen Model</label>
+                                <select id="setting-gflow_model" name="gflow_model" class="form-control">
+                                    <option value="nano2">Nano Banana 2.1 (NARWHAL) — Default Fast</option>
+                                    <option value="nano-pro">Nano Pro 2.0 (GEM_PIX_2) — High Precision</option>
+                                    <option value="image4">Google Imagen 3.5 (IMAGEN_3_5) — Studio Photorealism</option>
+                                    <option value="nano2-lite">Nano Lite (HARBOR_SEAL) — Minimal Resource</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Profile Name (Blank for Default)</label>
+                                <input id="setting-gflow_profile" name="gflow_profile" type="text" class="form-control" placeholder="e.g. muhammad-asadullah-oficial">
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper" style="margin-top:22px;">
+                                    <div>
+                                        <div style="font-size:0.88rem; font-weight:600;">Headless / Off-screen Mode</div>
+                                        <div style="font-size:0.75rem; color:var(--text-dim);">Keeps browser hidden off-screen during generation</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-gflow_headless" name="gflow_headless" type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper" style="margin-top:22px;">
+                                    <div>
+                                        <div style="font-size:0.88rem; font-weight:600;">Pre-Run Auto-Update Check</div>
+                                        <div style="font-size:0.75rem; color:var(--text-dim);">Checks & auto-updates CLI before every automation run</div>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-gflow_auto_update" name="gflow_auto_update" type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group full-width" style="margin-top:10px;">
+                                <label class="form-label" style="margin-bottom:8px; display:flex; align-items:center; justify-content:space-between;">
+                                    <span>Google Flow Control Operations</span>
+                                    <span style="font-size:0.75rem; color:var(--text-dim); font-weight:normal;">Parallel 1-Click Operations</span>
+                                </label>
+                                <div class="gflow-actions-grid">
+                                    <!-- Action 1: Authenticate Google Flow -->
+                                    <div class="gflow-action-card primary" onclick="triggerGflowAuth()" title="Launch interactive sign-in in browser (auto-closes on success)">
+                                        <div class="gflow-action-icon">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                                        </div>
+                                        <div class="gflow-action-content">
+                                            <div class="gflow-action-title">Authenticate Flow</div>
+                                            <div class="gflow-action-desc">1-Click Chrome Login</div>
+                                        </div>
+                                        <div class="gflow-action-arrow">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Action 2: Check Auth Status -->
+                                    <div class="gflow-action-card" onclick="checkGflowStatus(true)" title="Verify active Flow session & profile cookies">
+                                        <div class="gflow-action-icon emerald">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                        </div>
+                                        <div class="gflow-action-content">
+                                            <div class="gflow-action-title">Check Auth Status</div>
+                                            <div class="gflow-action-desc">Verify Active Session</div>
+                                        </div>
+                                        <div class="gflow-action-arrow">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Action 3: Upgrade gflow CLI -->
+                                    <div class="gflow-action-card" onclick="triggerGflowUpdate()" title="Update gflow CLI to the latest PyPI release via uv/pip">
+                                        <div class="gflow-action-icon purple">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                                        </div>
+                                        <div class="gflow-action-content">
+                                            <div class="gflow-action-title">Upgrade gflow CLI</div>
+                                            <div class="gflow-action-desc">Pull Latest PyPI Release</div>
+                                        </div>
+                                        <div class="gflow-action-arrow">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Action 4: Windows CMD Window -->
+                                    <div class="gflow-action-card" onclick="launchNativeGflowTerminal()" title="Launch native Windows Command Prompt with gflow environment prepped">
+                                        <div class="gflow-action-icon amber">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="6 9 9 12 6 15"/><line x1="12" y1="15" x2="18" y2="15"/></svg>
+                                        </div>
+                                        <div class="gflow-action-content">
+                                            <div class="gflow-action-title">Windows CMD Window</div>
+                                            <div class="gflow-action-desc">Launch Native Console</div>
+                                        </div>
+                                        <div class="gflow-action-arrow">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pinterest Pin Studio -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.5 19.37c-.03-.84-.06-2.14.12-3.06.17-.83 1.1-4.7 1.1-4.7s-.28-.56-.28-1.39c0-1.3.75-2.27 1.7-2.27.8 0 1.19.6 1.19 1.33 0 .81-.51 2.01-.78 3.13-.22.95.48 1.72 1.41 1.72 1.69 0 2.99-1.78 2.99-4.36 0-2.28-1.64-3.87-3.98-3.87-2.71 0-4.3 2.03-4.3 4.13 0 .82.31 1.69.71 2.17.08.1.09.18.06.3-.08.31-.25 1.01-.28 1.15-.04.18-.14.22-.32.13-1.22-.57-1.98-2.35-1.98-3.79 0-3.08 2.24-5.91 6.46-5.91 3.39 0 6.03 2.42 6.03 5.65 0 3.37-2.12 6.08-5.07 6.08-.99 0-1.92-.51-2.24-1.12l-.61 2.33c-.22.85-.82 1.92-1.22 2.58A9.99 9.99 0 1 0 12 2z"/></svg>
+                                </span>
+                                Pinterest Pin Generation (2:3 Vertical)
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <span style="font-size:0.88rem; font-weight:600;">Generate & Attach Pinterest Pin</span>
+                                    <label class="switch">
+                                        <input id="setting-pinterest_pin" name="pinterest_pin" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Pinterest Pin Resolution</label>
+                                <input id="setting-pin_resolution" name="pin_resolution" type="text" class="form-control" value="1000x1500">
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Pinterest Master Prompt Addition</label>
+                                <input id="setting-pin_image_master_prompt" name="pin_image_master_prompt" type="text" class="form-control" placeholder="E.g., vertical Pinterest graphic, eye-catching aesthetic, clean layout">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WordPress Publishing Connection -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </span>
+                                WordPress REST API Connection
+                            </div>
+                            <button type="button" id="btn-test-wp" class="btn btn-secondary btn-sm">Test WordPress Connection</button>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Site URL (No Trailing Slash)</label>
+                                <input id="setting-base_url" name="base_url" type="text" class="form-control" placeholder="https://yoursite.com">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">WordPress Username</label>
+                                <input id="setting-username" name="username" type="text" class="form-control" placeholder="admin">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Application Password</label>
+                                <input id="setting-app_password" name="app_password" type="password" class="form-control" placeholder="xxxx xxxx xxxx xxxx xxxx xxxx">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Publishing Mode</label>
+                                <select id="setting-status" name="status" class="form-control">
+                                    <option value="draft">Save as Draft (Review First)</option>
+                                    <option value="publish">Publish Live Immediately</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <span style="font-size:0.88rem; font-weight:600;">Auto-Publish After Generating</span>
+                                    <label class="switch">
+                                        <input id="setting-auto_publish" name="auto_publish" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">SEO Plugin Integration</label>
+                                <select id="setting-seo_plugin" name="seo_plugin" class="form-control">
+                                    <option value="rankmath">Rank Math SEO (via rank-math-rest-meta.php)</option>
+                                    <option value="none">None (Core WordPress Fields Only)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Post URL Slug Source</label>
+                                <select id="setting-slug_mode" name="slug_mode" class="form-control">
+                                    <option value="competitor">Exact Competitor / Source URL Slug (Recommended)</option>
+                                    <option value="title">Generated Post Title (Default)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Independent Image Dimensions & Text Overlays -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="2" x2="12" y2="22"/></svg>
+                                </span>
+                                Independent Resolutions & Overlays
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Output Image Format</label>
+                                <select id="setting-image_format" name="image_format" class="form-control">
+                                    <option value="webp">WebP (Recommended — Ultra Compact & Sharp)</option>
+                                    <option value="jpeg">JPEG (Standard Compatibility)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Heading / Section Image Resolution (Independent)</label>
+                                <input id="setting-resolution" name="resolution" type="text" class="form-control" value="hd" placeholder="sd, hd, fhd, 2k, or WxH">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Hero / Feature Image Resolution (Independent)</label>
+                                <input id="setting-feature_resolution" name="feature_resolution" type="text" class="form-control" value="hd" placeholder="sd, hd, fhd, 2k, or WxH">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editorial Typography & Fancy Overlays -->
+                    <div class="card settings-section">
+                        <div class="card-header">
+                            <div class="card-title">
+                                <span class="card-title-icon">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                                </span>
+                                Image Typography & Fancy Overlays (Individual Toggles)
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <div>
+                                        <span style="font-size:0.88rem; font-weight:600; display:block;">Hero 1 Text Overlay</span>
+                                        <span style="font-size:0.75rem; color:var(--text-muted);">Render title and category badge on Primary Hero (OFF = Clean Art)</span>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-feature_text_overlay" name="feature_text_overlay" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <div>
+                                        <span style="font-size:0.88rem; font-weight:600; display:block;">Hero 2 Text Overlay</span>
+                                        <span style="font-size:0.75rem; color:var(--text-muted);">Render title on Secondary Contextual Hero (OFF = Clean Art)</span>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-feature_2_text_overlay" name="feature_2_text_overlay" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <div>
+                                        <span style="font-size:0.88rem; font-weight:600; display:block;">Section Headings Text Overlay</span>
+                                        <span style="font-size:0.75rem; color:var(--text-muted);">Master section toggle (OFF = 100% Clean Art on all section images)</span>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-heading_text_overlay" name="heading_text_overlay" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Section Heading Overlay Mode (When Enabled)</label>
+                                <select id="setting-heading_overlay_mode" name="heading_overlay_mode" class="form-control">
+                                    <option value="first_only">1st Heading Image Only (Recommended — Clean Art on Rest)</option>
+                                    <option value="all">All Heading Images (Overlay Text on Every Section)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-wrapper">
+                                    <div>
+                                        <span style="font-size:0.88rem; font-weight:600; display:block;">Pinterest Pin Text Overlay</span>
+                                        <span style="font-size:0.75rem; color:var(--text-muted);">Render headline and badge on vertical 2:3 pin (OFF = Clean Art)</span>
+                                    </div>
+                                    <label class="switch">
+                                        <input id="setting-pin_text_overlay" name="pin_text_overlay" type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Google Sheets Cloud Integration -->
+                    <div class="card settings-section">
+                        <div class="card-header" style="justify-content:space-between;">
+                            <div class="card-title">
+                                <span class="card-title-icon" style="background:rgba(34,197,94,0.15); color:#4ade80;">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                                </span>
+                                Google Sheets Cloud Sync (Zero Duplicates)
+                            </div>
+                            <div style="display:flex; gap:8px;">
+                                <button type="button" id="btn-view-sheet-script" class="btn btn-secondary btn-sm" onclick="openSheetScriptModal()">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                                    View Apps Script Code
+                                </button>
+                                <button type="button" id="btn-test-sheets" class="btn btn-secondary btn-sm" onclick="testGoogleSheetsConnection()">
+                                    Test Connection
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label class="form-label">Google Sheet Document URL</label>
+                                <input id="setting-google_sheet_url" name="google_sheet_url" type="text" class="form-control" placeholder="https://docs.google.com/spreadsheets/d/your-sheet-id/edit">
+                                <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">
+                                    Your destination Google Sheet URL (for reference & direct navigation).
+                                </span>
+                            </div>
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label class="form-label">Google Apps Script Web App Webhook URL</label>
+                                <input id="setting-google_sheet_webhook_url" name="google_sheet_webhook_url" type="text" class="form-control" placeholder="https://script.google.com/macros/s/AKfycbx.../exec">
+                                <span style="font-size:0.75rem; color:var(--text-muted); margin-top:4px; display:block;">
+                                    Deployed Web App endpoint from Extensions &gt; Apps Script (Execute as: Me, Access: Anyone). Matches Export CSV format with zero duplicate entries.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:flex-end;">
+                        <button type="submit" class="btn btn-primary" style="padding:12px 28px; font-size:0.95rem;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ── PAGE 6: ARTICLES CATALOG ─────────────────── -->
+            <div id="page-articles" class="page-container">
+                <div id="articles-grid" class="articles-grid">
+                    <div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--text-dim);">Loading articles...</div>
+                </div>
+            </div>
+
+            <!-- ── PAGE 7: LIVE CONSOLE LOGS ────────────────── -->
+            <div id="page-logs" class="page-container">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <span style="width:10px; height:10px; border-radius:50%; background:#ef4444;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b;"></span>
+                            <span style="width:10px; height:10px; border-radius:50%; background:#10b981;"></span>
+                            <span style="font-family:var(--font-mono); font-size:0.8rem; margin-left:10px; color:var(--text-muted);">stream: /api/logs/stream</span>
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('terminal-body').innerHTML=''">Clear</button>
+                            <button class="btn btn-secondary btn-sm" onclick="autoScrollLogs = !autoScrollLogs; showToast('Auto-scroll: ' + autoScrollLogs)">Auto-Scroll</button>
+                        </div>
+                    </div>
+                    <div id="terminal-body" class="terminal-body">
+                        <!-- Streamed log lines append here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ── MODAL: ADD SINGLE URL ────────────────────────────── -->
+    <div id="add-url-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 style="margin-bottom:14px;">Add New URL to Queue</h3>
+            <form id="form-add-url">
+                <div class="form-group" style="margin-bottom:12px;">
+                    <label class="form-label">Article URL</label>
+                    <input id="input-add-url" type="url" class="form-control" required placeholder="https://example.com/article-slug">
+                </div>
+                <div class="form-group" style="margin-bottom:20px;">
+                    <label class="form-label">Category (Optional)</label>
+                    <input id="input-add-category" type="text" class="form-control" placeholder="Technology">
+                </div>
+                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddUrlModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Queue Link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ── MODAL: PREVIEW STANDALONE ARTICLE ────────────────── -->
+    <div id="preview-modal" class="modal-overlay">
+        <div class="modal-card" style="max-width:980px; width:95%; height:90vh; display:flex; flex-direction:column; padding:0; overflow:hidden;">
+            <div style="padding:14px 20px; background:#0f172a; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-weight:700;">Compiled Article Preview</span>
+                <button class="btn btn-secondary btn-sm" onclick="closePreviewModal()">Close Preview</button>
+            </div>
+            <iframe id="preview-iframe" style="flex:1; width:100%; border:none; background:#fff;"></iframe>
+        </div>
+    </div>
+
+    <!-- ── MODAL: GOOGLE FLOW TERMINAL STUDIO ────────────────── -->
+    <div id="gflow-terminal-modal" class="modal-overlay">
+        <div class="modal-card" style="max-width:1050px; width:95%; height:86vh; display:flex; flex-direction:column; padding:0; overflow:hidden; background:#070b14; border:1px solid #1e293b; box-shadow:0 25px 60px -15px rgba(0,0,0,0.85); border-radius:14px;">
+            <!-- Terminal Header -->
+            <div style="padding:12px 18px; background:#0f172a; border-bottom:1px solid #1e293b; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="display:flex; gap:6px;">
+                        <span style="width:12px; height:12px; border-radius:50%; background:#ef4444; display:inline-block; cursor:pointer;" onclick="closeGflowTerminalModal()" title="Close Terminal"></span>
+                        <span style="width:12px; height:12px; border-radius:50%; background:#f59e0b; display:inline-block;"></span>
+                        <span style="width:12px; height:12px; border-radius:50%; background:#10b981; display:inline-block;"></span>
+                    </div>
+                    <span style="font-weight:700; font-size:0.95rem; color:#f8fafc; display:flex; align-items:center; gap:8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                        Google Flow Terminal Studio
+                    </span>
+                    <span id="gflow-term-badge" class="badge badge-secondary" style="font-size:0.75rem; padding:2px 8px;">Checking...</span>
+                    <span id="gflow-term-version" style="font-size:0.75rem; color:var(--text-dim);">v0.86.0</span>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm" onclick="triggerGflowAuth()" title="Launch interactive sign-in in browser">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                        Authenticate
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="checkGflowStatus(true)" title="Probe Flow session status">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Check Status
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="runGflowCliCommand('models')" title="List available models">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                        Models
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="runGflowCliCommand('doctor')" title="Run system diagnostics">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        Doctor
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="triggerGflowUpdate()" title="Upgrade gflow CLI">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                        Update CLI
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="launchNativeGflowTerminal()" title="Launch native Windows command prompt">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="6 9 9 12 6 15"/><line x1="12" y1="15" x2="18" y2="15"/></svg>
+                        Windows CMD
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="clearGflowTerminal()" title="Clear terminal screen">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        Clear
+                    </button>
+                    <button class="btn btn-secondary btn-sm" onclick="closeGflowTerminalModal()" style="padding:4px 10px;">✕</button>
+                </div>
+            </div>
+
+            <!-- Terminal Screen / Log Canvas -->
+            <div id="gflow-term-body" style="flex:1; padding:18px 22px; overflow-y:auto; font-family:'Consolas', 'Courier New', monospace; font-size:0.86rem; line-height:1.65; color:#e2e8f0; background:#040711; border-bottom:1px solid #1e293b; user-select:text; white-space:pre-wrap; word-break:break-word;">
+<span style="color:#64748b;">======================================================================</span>
+<span style="color:#38bdf8; font-weight:bold;">  GOOGLE FLOW (gflow) INTERACTIVE WEB TERMINAL STUDIO</span>
+<span style="color:#64748b;">======================================================================</span>
+<span style="color:#94a3b8;">* Type any command in the prompt below (e.g. 'auth status', 'credits user', 'models', 'doctor')</span>
+<span style="color:#94a3b8;">* Click '🔑 Authenticate Flow' to open browser login (auto-closes once authenticated)</span>
+<span style="color:#64748b;">----------------------------------------------------------------------</span>
+            </div>
+
+            <!-- Terminal Command Input Bar -->
+            <div style="padding:10px 18px; background:#0a0f1d; display:flex; gap:10px; align-items:center;">
+                <span style="font-family:'Consolas', monospace; font-weight:700; color:#38bdf8; font-size:0.92rem; white-space:nowrap;">gflow $</span>
+                <input id="gflow-term-input" type="text" class="form-control" placeholder="Type command (e.g. auth status, doctor, models, credits user)" style="font-family:'Consolas', monospace; font-size:0.88rem; background:#040711; border-color:#334155; color:#f8fafc;" onkeydown="handleGflowInputKey(event)">
+                <button class="btn btn-primary btn-sm" onclick="submitGflowTermInput()">Run</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- ── MODAL: GOOGLE APPS SCRIPT GATEWAY ────────────────── -->
+    <div id="modal-sheet-script" class="modal-overlay" onclick="if(event.target === this) closeSheetScriptModal()">
+        <div class="modal-card" style="max-width:760px; width:95%; max-height:90vh; display:flex; flex-direction:column; padding:0; overflow:hidden; background:#070b14; border:1px solid #1e293b; box-shadow:0 25px 60px -15px rgba(0,0,0,0.85); border-radius:14px;">
+            <div style="padding:14px 20px; background:#0f172a; border-bottom:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-weight:700; font-size:1rem; display:flex; align-items:center; gap:8px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#4ade80;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+                    Google Apps Script — 30-Second Setup Guide
+                </span>
+                <button class="btn btn-secondary btn-sm" onclick="closeSheetScriptModal()">&times; Close</button>
+            </div>
+            <div style="padding:20px; font-size:0.88rem; line-height:1.6; overflow-y:auto; flex:1;">
+                <div style="background:rgba(30,41,59,0.7); border:1px solid var(--border-color); border-radius:8px; padding:14px; margin-bottom:16px;">
+                    <strong style="color:var(--accent-blue); display:block; margin-bottom:6px;">⚡ Simple 3-Step Setup (Zero Google Cloud Console Needed):</strong>
+                    <ol style="margin:0; padding-left:20px; color:var(--text-dim);">
+                        <li>Open your Google Sheet and click <strong>Extensions &gt; Apps Script</strong>.</li>
+                        <li>Delete any default code, paste the script below, and click <strong>Save (Ctrl+S)</strong>.</li>
+                        <li>Click <strong>Deploy &gt; New deployment</strong>, select type <strong>Web app</strong>, configure:
+                            <br>&bull; <em>Execute as:</em> <strong>Me</strong>
+                            <br>&bull; <em>Who has access:</em> <strong>Anyone</strong>
+                            <br>Then click <strong>Deploy</strong> and paste the resulting <strong>Web App URL</strong> into Settings!
+                        </li>
+                    </ol>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <span style="font-weight:600; color:var(--text-muted); font-size:0.8rem; text-transform:uppercase;">Apps Script Gateway Code:</span>
+                    <button class="btn btn-secondary btn-sm" onclick="copyAppsScriptCode()" id="btn-copy-script" style="border-color:rgba(56,189,248,0.4); color:#38bdf8;">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        Copy Script Code
+                    </button>
+                </div>
+                <pre id="apps-script-code-block" style="background:#040711; border:1px solid #1e293b; border-radius:8px; padding:14px; font-family:'Consolas', monospace; font-size:0.8rem; color:#93c5fd; max-height:300px; overflow-y:auto; white-space:pre-wrap; user-select:all;">/**
+ * Auto Content Pipeline — Google Sheets Sync Gateway
+ * Paste this into Extensions &gt; Apps Script in your Google Sheet, then Deploy as Web App.
+ * IMPORTANT: When deploying, set &quot;Execute as: Me&quot; and &quot;Who has access: Anyone&quot;.
+ */
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({
+    success: true,
+    message: &quot;Google Sheets Sync Gateway is active and ready! Use POST to sync.&quot;
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  if (!lock.tryLock(30000)) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: &quot;Sheet is busy with another sync request. Please try again.&quot;
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var payload = JSON.parse(e.postData.contents);
+    
+    // 1. Healthcheck / Ping
+    if (payload.action === &quot;ping&quot;) {
+      return ContentService.createTextOutput(JSON.stringify({
+        success: true,
+        message: &quot;Connected to sheet: &quot; + SpreadsheetApp.getActiveSpreadsheet().getName()
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    var rows = payload.rows || [];
+    var headers = [&quot;ID&quot;, &quot;Source URL&quot;, &quot;Category&quot;, &quot;Status&quot;, &quot;Published Link&quot;, &quot;Created At&quot;, &quot;Updated At&quot;];
+    var lastRow = sheet.getLastRow();
+    
+    // 2. Initialize Headers if sheet is blank
+    if (lastRow === 0) {
+      sheet.appendRow(headers);
+      sheet.getRange(1, 1, 1, headers.length)
+           .setFontWeight(&quot;bold&quot;)
+           .setBackground(&quot;#1e293b&quot;)
+           .setFontColor(&quot;#f8fafc&quot;);
+      sheet.setFrozenRows(1);
+      lastRow = 1;
+    }
+    
+    // 3. Build Index of Existing URLs in Column B (Index 2 in sheet)
+    var urlMap = {};
+    if (lastRow &gt; 1) {
+      var existingUrls = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
+      for (var i = 0; i &lt; existingUrls.length; i++) {
+        var u = String(existingUrls[i][0] || &quot;&quot;).trim();
+        if (u) {
+          urlMap[u] = i + 2; // 1-based row index in sheet
+        }
+      }
+    }
+    
+    var updatedCount = 0;
+    var addedCount = 0;
+    var toAppend = [];
+    
+    // 4. Match &amp; Synchronize
+    for (var j = 0; j &lt; rows.length; j++) {
+      var r = rows[j];
+      var srcUrl = String(r.source_url || r.url || &quot;&quot;).trim();
+      if (!srcUrl) continue;
+      
+      var rowData = [
+        r.id || &quot;&quot;,
+        srcUrl,
+        r.category || &quot;General&quot;,
+        r.status || &quot;pending&quot;,
+        r.published_link || r.post_url || &quot;N/A&quot;,
+        r.created_at || &quot;&quot;,
+        r.updated_at || &quot;&quot;
+      ];
+      
+      if (urlMap[srcUrl]) {
+        // Update in-place to avoid duplicate rows
+        var targetRow = urlMap[srcUrl];
+        sheet.getRange(targetRow, 1, 1, rowData.length).setValues([rowData]);
+        updatedCount++;
+      } else {
+        toAppend.push(rowData);
+        urlMap[srcUrl] = lastRow + toAppend.length; // track to prevent duplicates within batch
+        addedCount++;
+      }
+    }
+    
+    // 5. Append new rows in a single batch
+    if (toAppend.length &gt; 0) {
+      var nextRow = sheet.getLastRow() + 1;
+      sheet.getRange(nextRow, 1, toAppend.length, headers.length).setValues(toAppend);
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      total: rows.length,
+      updated: updatedCount,
+      added: addedCount,
+      sheet_name: SpreadsheetApp.getActiveSpreadsheet().getName()
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: err.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}</pre>
+            </div>
+            <div style="padding:12px 20px; background:#0f172a; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.75rem; color:var(--text-muted);">Matches Export CSV format &bull; In-place updates &bull; Zero duplicates</span>
+                <button class="btn btn-secondary btn-sm" onclick="closeSheetScriptModal()">Done</button>
+            </div>
+        </div>
+    </div>
+
+<script src="/static/js/app.js?v=3.9"></script>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-item active" data-target="dashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Home</span>
+        </div>
+        <div class="mobile-nav-item" data-target="control-deck">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span>Control</span>
+        </div>
+        <div class="mobile-nav-item" data-target="queue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <span>Queue</span>
+        </div>
+        <div class="mobile-nav-item" data-target="articles">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Articles</span>
+        </div>
+        <div class="mobile-nav-item" data-target="settings">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Settings</span>
+        </div>
+        <div class="mobile-nav-item" data-target="logs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            <span>Logs</span>
+        </div>
+    </nav>
+
+</body>
+</html>

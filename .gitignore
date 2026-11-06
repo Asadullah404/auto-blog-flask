@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# PyInstaller / Build outputs
+build/
+dist/
+*.manifest
+*.spec.bak
+
+# Generated Media & Article Outputs (large binaries)
+pipeline_output/
+BACKUP/
+
+# Logs & Temporary files
+*.log
+scratch/
+.system_generated/
+
+# Sensitive credentials
+firebase_config.json
+!firebase_config.example.json
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+{
+  "_comment": "Copy this file to firebase_config.json and fill in your own project's values. This is your Firebase project's public web config — NOT a secret (Google's own docs say it's safe to ship in a client app); it only identifies which project to talk to. Real access control is enforced by Firestore Security Rules, keyed on the signed-in user's uid. It's still kept out of git and bundled as a file (not hardcoded in source) purely so it isn't a bare literal in the compiled exe and can be rotated by shipping a new build.",
+  "apiKey": "from: Firebase console -> Project settings -> General -> Your apps -> Web app -> SDK setup and configuration",
+  "authDomain": "<project-id>.firebaseapp.com",
+  "projectId": "from: Firebase console -> Project settings -> General -> Project ID"
+}
